@@ -1,0 +1,88 @@
+#Generate project
+	- inside CQRS-ES run :
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\CQRS-ES> dotnet new classlib -o CQRS.Core
+	
+	- inside SM-POST run :
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet new sln
+	
+	- inside Post.Cmd run :
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST\Post.Cmd> dotnet new webapi -o Post.Cmd.Api
+	
+	- inside SM-POST run :
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet new classlib -o Post.Common
+	
+	- inside Post.Cmd run :
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST\Post.Cmd> dotnet new classlib -o Post.Cmd.Domain
+	
+	- inside Post.Cmd run :	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST\Post.Cmd> dotnet new classlib -o Post.Cmd.Infrastructure
+	
+	- inside Post.Query run :	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST\Post.Query> dotnet new webapi -o Post.Query.Api
+	
+	- inside Post.Query run :	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST\Post.Query> dotnet new classlib -o Post.Query.Domain 
+	
+	- inside Post.Query run :
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST\Post.Query> dotnet new classlib -o Post.Query.Infrastructure
+	
+	
+	- add all to solution
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet sln add ..\CQRS-ES\CQRS.Core\CQRS.Core.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet sln add .\Post.Cmd\Post.Cmd.Api\Post.Cmd.Api.csproj
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet sln add .\Post.Cmd\Post.Cmd.Domain\Post.Cmd.Domain.csproj
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet sln add .\Post.Cmd\Post.Cmd.Infrastructure\Post.Cmd.Infrastructure.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet sln add .\Post.Query\Post.Query.Api\Post.Query.Api.csproj
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet sln add .\Post.Query\Post.Query.Domain\Post.Query.Domain.csproj
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet sln add .\Post.Query\Post.Query.Infrastructure\Post.Query.Infrastructure.csproj
+	
+	
+	
+	
+#Add project references
+	- project "Post.Cmd.Api" include reference to project : "CQRS.Core"
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Cmd\Post.Cmd.Api\Post.Cmd.Api.csproj reference ..\CQRS-ES\CQRS.Core\CQRS.Core.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Cmd\Post.Cmd.Api\Post.Cmd.Api.csproj reference .\Post.Cmd\Post.Cmd.Domain\Post.Cmd.Domain.csproj
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Cmd\Post.Cmd.Api\Post.Cmd.Api.csproj reference .\Post.Cmd\Post.Cmd.Infrastructure\Post.Cmd.Infrastructure.csproj
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Cmd\Post.Cmd.Api\Post.Cmd.Api.csproj reference .\Post.Common\Post.Common.csproj
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Cmd\Post.Cmd.Api\Post.Cmd.Api.csproj reference .\Post.Common\Post.Common.csproj
+	
+	- project "Post.Cmd.Domain" include reference to project : "CQRS.Core"
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Cmd\Post.Cmd.Domain\Post.Cmd.Domain.csproj reference ..\CQRS-ES\Post.Cmd.Domain\CQRS.Core.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Cmd\Post.Cmd.Domain\Post.Cmd.Domain.csproj refernce .\Post.Common\Post.Common.csproj
+	
+	- project "Post.Cmd.Infrastructure" include reference to project : "CQRS.Core"
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Cmd\Post.Cmd.Infrastructure\Post.Cmd.Infrastructure.csproj reference ..\CQRS-ES\CQRS.Core\CQRS.Core.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Cmd\Post.Cmd.Infrastructure\Post.Cmd.Infrastructure.csproj reference .\Post.Cmd\Post.Cmd.Domain\Post.Cmd.Domain.csproj
+	
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Common\Post.Common.csproj reference ..\CQRS-ES\CQRS.Core\CQRS.Core.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Query\Post.Query.Api\Post.Query.Api.csproj reference ..\CQRS-ES\CQRS.Core\CQRS.Core.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Query\Post.Query.Api\Post.Query.Api.csproj reference .\Post.Query\Post.Query.Domain\Post.Query.Domain.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Query\Post.Query.Api\Post.Query.Api.csproj reference .\Post.Query\Post.Query.Infrastructure\Post.Query.Infrastructure.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Query\Post.Query.Api\Post.Query.Api.csproj reference .\Post.Common\Post.Common.csproj
+	
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Query\Post.Query.Domain\Post.Query.Domain.csproj reference ..\CQRS-ES\CQRS.Core\CQRS.Core.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Query\Post.Query.Domain\Post.Query.Domain.csproj reference .\Post.Common\Post.Common.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Query\Post.Query.Infrastructure\Post.Query.Infrastructure.csproj reference ..\CQRS-ES\CQRS.Core\CQRS.Core.csproj
+	
+	PS C:\Projects\Net\microservices\Cqrs\Project\Solution\SM-POST> dotnet add .\Post.Query\Post.Query.Infrastructure\Post.Query.Infrastructure.csproj reference .\Post.Query\Post.Query.Domain\Post.Query.Domain.csproj
+	
+	
+	
+	
+	
